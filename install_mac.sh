@@ -49,8 +49,10 @@ VERSION="$(sed -n 's/^APP_VERSION = "\(.*\)"/\1/p' "$DEST/vdi_app.py" | head -1)
 
 # -----------------------------------------------------------------------------
 # Double-click app. Built here with macOS's own osacompile, so it is local (no
-# quarantine) and signed ad hoc. It opens Run_on_mac.command in Terminal with
-# `open -a`, which needs no "control Terminal" permission prompt.
+# quarantine) and signed ad hoc. It tells Terminal to run `bash <launcher>`
+# directly, so macOS never opens a .command file through Gatekeeper (the cause
+# of "Apple could not verify..."). macOS may ask once to let the app control
+# Terminal - click OK.
 # Failure here never stops the install - the launcher still works without it.
 # -----------------------------------------------------------------------------
 make_app() {
@@ -66,7 +68,10 @@ on run
         display dialog "VDI Host Sizer was not found. Run the install command from the ReadMe in Terminal to reinstall." buttons {"OK"} default button "OK" with icon caution
         return
     end try
-    do shell script "open -a Terminal " & quoted form of launcher
+    tell application "Terminal"
+        activate
+        do script "clear; bash " & quoted form of launcher
+    end tell
 end run
 EOS
     rm -rf "$APP"

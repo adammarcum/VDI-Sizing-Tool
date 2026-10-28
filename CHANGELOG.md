@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1 (October 2026)
+* **Mac launch.** The "VDI Host Sizer" app now tells Terminal to run the launcher directly, so macOS no longer shows "Run_on_mac.command Not Opened - Apple could not verify...". macOS may ask once to allow the app to control Terminal; click OK.
+* **Mac install.** The ReadMe and landing page now show the one-line install as the only Mac route (a browser-downloaded ZIP is quarantined by macOS).
+
 ## 1.0 (October 2026)
 First release of VDI Host Sizer.
 

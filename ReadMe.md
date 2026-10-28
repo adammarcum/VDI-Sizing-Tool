@@ -1,4 +1,4 @@
-# VDI Host Sizer (v1.0)
+# VDI Host Sizer (v1.0.1)
 
 Sizes VMware ESXi hosts for VDI (full clone, Instant Clone / MCS, PVS) and RDSH desktops, using the AHEAD
 VDI Sizing Estimator method. Powered by AHEAD. Same look and launch pattern as the Host Sizer.
@@ -9,7 +9,7 @@ VDI Sizing Estimator method. Powered by AHEAD. Same look and launch pattern as t
   curl -fsSL https://raw.githubusercontent.com/adammarcum/VDI-Sizing-Tool/main/install_mac.sh | bash
   ```
   It installs to `~/HostSizer/vdi-app`, adds a **VDI Host Sizer** app to your Applications folder (also in Launchpad and
-  Spotlight), and starts the tool. Next time, just open that app. Run the same line again to update; saved projects are kept.
+  Spotlight), and starts the tool. Next time, just open that app (if macOS asks to let it control Terminal, click OK). Run the same line again to update; saved projects are kept.
   (A ZIP downloaded in a browser is flagged by macOS and `Run_on_mac.command` is blocked; use the line above instead.)
 * **Windows:** unzip into a folder, double-click `Run_on_windows.bat` (if SmartScreen appears: More info, then Run anyway).
 * **Developer:** `python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && streamlit run vdi_app.py`

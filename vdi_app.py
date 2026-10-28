@@ -20,7 +20,7 @@ from cpu_catalog import CPU_BY_LABEL, CPU_CUSTOM, CPU_OPTIONS
 from vdi_report import cand_label, data_uri, generate_report, tb
 
 APP_TITLE = "VDI Host Sizer"
-APP_VERSION = "1.0"
+APP_VERSION = "1.0.1"
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Update check: reads only the version line of vdi_app.py on GitHub. Nothing about the user or their data is
