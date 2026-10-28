@@ -20,8 +20,17 @@ from cpu_catalog import CPU_BY_LABEL, CPU_CUSTOM, CPU_OPTIONS
 from vdi_report import cand_label, data_uri, generate_report, tb
 
 APP_TITLE = "VDI Host Sizer"
-APP_VERSION = "0.1"
+APP_VERSION = "1.0"
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Update check: reads only the version line of vdi_app.py on GitHub. Nothing about the user or their data is
+# sent. Set VDI_HOSTSIZER_NO_UPDATE_CHECK=1 to turn it off.
+REPO_URL = "https://github.com/adammarcum/VDI-Sizing-Tool"
+UPDATE_SOURCE_URL = os.environ.get("VDI_HOSTSIZER_UPDATE_URL",
+                                   "https://raw.githubusercontent.com/adammarcum/VDI-Sizing-Tool/main/vdi_app.py")
+UPDATE_ZIP_URL = REPO_URL + "/archive/refs/heads/main.zip"
+UPDATE_NOTES_URL = REPO_URL + "/blob/main/CHANGELOG.md"
+MAC_INSTALL_CMD = "curl -fsSL https://raw.githubusercontent.com/adammarcum/VDI-Sizing-Tool/main/install_mac.sh | bash"
 LOGO_WHITE = os.path.join(APP_DIR, "vdi_sizer_logo_white.png")
 ICON = os.path.join(APP_DIR, "vdi_sizer_icon.png")
 PROJECTS_DIR = os.path.expanduser(os.environ.get("HOSTSIZER_VDI_PROJECTS", os.path.join("~", "HostSizer", "VDIProjects")))
@@ -82,6 +91,14 @@ APP_CSS = """<style>
 .hs-cmp td { padding: 10px 14px; border-bottom: 1px solid #EBF0F2; color: #333333; }
 .hs-cmp tr:last-child td { border-bottom: 0; }
 .hs-cmp td:first-child { color: #123A61; font-weight: 500; }
+.hs-update { background: rgba(0,179,136,.16); border: 1px solid rgba(110,206,178,.45); border-radius: 12px;
+             padding: 12px 14px; margin: 4px 0 10px; color: #FFFFFF; font-size: 13px; line-height: 1.45; }
+.hs-update .t { font-weight: 600; color: #6ECEB2; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.hs-update .v { margin: 4px 0 10px; color: rgba(255,255,255,.88); }
+.hs-update a { display: inline-block; text-decoration: none; font-weight: 500; font-size: 12.5px; border-radius: 9999px; }
+.hs-update a.dl { background: #00B388; color: #FFFFFF; padding: 6px 14px; margin-right: 8px; }
+.hs-update a.nt { color: #67C3E9; }
+.hs-update .mac { margin-top: 8px; font-size: 11.5px; color: rgba(255,255,255,.7); }
 .hs-tile-name { font-size: 15px; font-weight: 600; color: #123A61; word-break: break-all; }
 </style>"""
 
@@ -638,6 +655,47 @@ def keep_alive():
             ss[k] = ss[k]
 
 
+def version_tuple(v):
+    return tuple(int(x) for x in re.findall(r"\d+", str(v))[:4])
+
+
+@st.cache_data(ttl=6 * 3600, show_spinner=False)
+def _fetch_latest_version():
+    """Newest APP_VERSION on GitHub. Raises on failure, so failures aren't cached."""
+    import urllib.request
+    req = urllib.request.Request(UPDATE_SOURCE_URL, headers={"Range": "bytes=0-8191",
+                                                             "User-Agent": f"VDIHostSizer/{APP_VERSION}"})
+    with urllib.request.urlopen(req, timeout=3) as resp:
+        head = resp.read(8192).decode("utf-8", "ignore")
+    return re.search(r'^APP_VERSION = "([^"]+)"', head, re.M).group(1)
+
+
+def latest_version():
+    """Newest version on GitHub, or None when disabled, offline or blocked (3 s timeout)."""
+    if os.environ.get("VDI_HOSTSIZER_NO_UPDATE_CHECK"):
+        return None
+    try:
+        return _fetch_latest_version()
+    except Exception:  # noqa: BLE001 - offline, proxy, GitHub down: just skip the notice
+        return None
+
+
+def render_update_notice(container):
+    latest = latest_version()
+    if not latest or version_tuple(latest) <= version_tuple(APP_VERSION):
+        return
+    container.html(
+        f"<div class='hs-update'><div class='t'>Update available</div>"
+        f"<div class='v'>Version {escape(latest)} is out. You have {escape(APP_VERSION)}.</div>"
+        f"<a class='dl' href='{UPDATE_ZIP_URL}' target='_blank' rel='noopener'>Download update</a>"
+        f"<a class='nt' href='{UPDATE_NOTES_URL}' target='_blank' rel='noopener'>What's new</a>"
+        + ("<div class='mac'>On a Mac, update by running the install command in Terminal again (see the ReadMe).</div>"
+           if sys.platform == "darwin" else "") + "</div>")
+    if not st.session_state.get("_update_toast"):
+        st.session_state._update_toast = True
+        st.toast(f"{APP_TITLE} {latest} is available. See About in the sidebar to download it.", icon=":material/system_update:")
+
+
 def render_sidebar():
     sb = st.sidebar
     logo = data_uri(LOGO_WHITE)
@@ -651,6 +709,7 @@ def render_sidebar():
     sb.caption(f"{st.session_state.customer} · {st.session_state.project}")
     sb.html("<div class='hs-label'>About</div>")
     sb.caption(f"{APP_TITLE} v{APP_VERSION} · VMware ESXi")
+    render_update_notice(sb)
 
 
 def main():

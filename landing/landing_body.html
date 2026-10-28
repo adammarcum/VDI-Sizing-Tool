@@ -1,0 +1,273 @@
+<nav class="topnav"><div class="wrap">
+  <a class="brand" href="#top"><img src="{{AHEAD_WHITE}}" alt="AHEAD"></a>
+  <a class="link" href="#new">What's new</a>
+  <a class="link" href="#what">What it does</a>
+  <a class="link" href="#how">How it works</a>
+  <a class="link" href="#install">Get started</a>
+  <a class="link" href="#screens">Screenshots</a>
+  <a class="link" href="#method">Sizing method</a>
+  <a class="link" href="#faq">FAQ</a>
+  <a class="btn primary small" href="{{ZIP}}" target="_blank" rel="noopener">Download</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <img class="lockup" src="{{LOCKUP}}" alt="VDI Host Sizer - Powered by AHEAD">
+  <div class="eyebrow">VDI &amp; RDSH sizing · VMware ESXi · For AHEAD Solutions Architects</div>
+  <h1>Size the next VDI cluster in <em>minutes</em>, not <em>spreadsheets</em></h1>
+  <p class="lede">VDI Host Sizer turns a list of desktop types and user counts into a defensible host count. Describe your
+    desktops and RDSH farms, pick the target host, and it works out how many ESXi hosts the project needs, with N+X failure
+    tolerance, memory, vGPU and storage built in. When you're done, it produces a polished AHEAD-branded report you can send
+    straight to the customer.</p>
+  <div class="cta">
+    <a class="btn primary" href="{{ZIP}}" target="_blank" rel="noopener">&#8681;&nbsp; Download for Windows &amp; Mac (ZIP)</a>
+    <a class="btn ghost" href="{{REPO}}" target="_blank" rel="noopener">View on GitHub</a>
+    <a class="btn ghost" href="#install">Installation steps</a>
+  </div>
+  <div class="meta" style="margin-top:16px">Download didn't start? Open
+    <a href="{{REPO}}" target="_blank" rel="noopener" style="color:var(--light-blue)">github.com/adammarcum/VDI-Sizing-Tool</a>
+    in a new browser tab and choose <strong>&nbsp;Code &rarr; Download ZIP</strong>.</div>
+  <div class="stats">
+    <div class="stat"><div class="num">VDI + RDSH</div><div class="cap">Full clone, Instant Clone / MCS, PVS and session hosts</div></div>
+    <div class="stat"><div class="num">N+X</div><div class="cap">Host count solved for CPU, memory and vGPU, then checked with the failed hosts removed</div></div>
+    <div class="stat"><div class="num">1 report</div><div class="cap">AHEAD-branded, self-contained, printable to PDF</div></div>
+    <div class="stat"><div class="num">100% local</div><div class="cap">Runs on your laptop. Customer data never leaves it</div></div>
+  </div>
+  <div class="meta"><span class="dot"></span>Current version v{{VERSION}} · <a href="#new" style="color:var(--light-blue)">What's new</a> · Windows and macOS · Free for internal AHEAD use</div>
+</div></header>
+
+<section class="alt" id="new"><div class="wrap">
+  <div class="eyebrow">Release notes</div>
+  <h2>What's new</h2>
+  <p class="section-lede">The latest changes to VDI Host Sizer. The tool tells you in the sidebar when a newer version
+    is available; saved projects are kept when you update.</p>
+  <div class="cards two">{{RELEASES}}</div>
+  <p class="more">Full change history: <a href="{{REPO}}/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG on GitHub</a></p>
+</div></section>
+
+<section id="what"><div class="wrap">
+  <div class="eyebrow">What it does</div>
+  <h2>From user counts to a recommendation</h2>
+  <p class="section-lede">VDI Host Sizer replaces the manual spreadsheet behind a VDI host sizing. You describe the
+    desktops, it keeps every assumption visible, so the number you give the customer is one you can defend.</p>
+  <div class="cards">
+    <div class="card"><div class="icon">1</div><div class="label">Describe</div><h4>Enter the workloads</h4>
+      <p>One row per desktop user type and per RDSH farm, with names you choose: concurrent users, vCPU, memory, vGPU, disk and profile storage.</p></div>
+    <div class="card green"><div class="icon">2</div><div class="label">Size</div><h4>Calculate the host count</h4>
+      <p>Hosts needed for CPU, memory, vGPU memory and an optional VMs-per-host cap. The largest wins, then N+X
+        failure tolerance and the minimum cluster size are added.</p></div>
+    <div class="card navy"><div class="icon">3</div><div class="label">Validate</div><h4>Check it with hosts failed</h4>
+      <p>The design is re-tested at N-X: vCPU:pCore (and with hyper-threading), GHz per user, memory and GPU left, and VMs per host.</p></div>
+    <div class="card"><div class="icon">4</div><div class="label">Deliver</div><h4>Hand over a branded report</h4>
+      <p>One click produces an AHEAD-branded report with the workloads, host sizing, storage, assumptions and method. It works
+        offline, can be emailed and prints cleanly to PDF.</p></div>
+  </div>
+
+  <h3>Also built in</h3>
+  <div class="cards">
+    <div class="card"><h4>Compare up to three hosts</h4><p>Put candidate hosts side by side, with a processor picker for current
+      Intel Xeon and AMD EPYC models that fills in cores and base clock.</p></div>
+    <div class="card"><h4>Host count override</h4><p>Enter a fixed node count (for example a quoted configuration) and see at once
+      whether it passes the design rules.</p></div>
+    <div class="card"><h4>Storage that adds up</h4><p>Thick/PVS, Instant Clone / MCS and profile storage for desktops and RDSH
+      combined, with dedupe and a free-space reserve.</p></div>
+    <div class="card"><h4>vGPU aware</h4><p>vGPU profile memory per desktop is sized against GPU memory per host. A host with no
+      GPU is flagged instead of quietly passing.</p></div>
+    <div class="card"><h4>Workload classes</h4><p>Each user type gets a vCPU:pCore design limit by class, so light task desktops
+      and heavy power users are not sized on the same ratio.</p></div>
+    <div class="card"><h4>Growth and clusters</h4><p>Compound annual growth for a future sizing, and automatic splitting into several
+      clusters when the total exceeds your cluster cap.</p></div>
+    <div class="card"><h4>Licensing</h4><p>Per-core licensing with the 16-core-per-CPU minimum, for the recommended host count.</p></div>
+    <div class="card"><h4>Saved projects</h4><p>Save a sizing and reopen it later with all of its settings from your local project library.</p></div>
+    <div class="card"><h4>Update notice</h4><p>The sidebar tells you when a newer version is on GitHub. It reads only the version
+      number and can be turned off.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="how"><div class="wrap">
+  <div class="eyebrow">How it works</div>
+  <h2>Four steps to a sizing</h2>
+  <p class="section-lede">Once the tool is running, a typical sizing takes a few minutes.</p>
+  <div class="steps">
+    <div class="step"><h4>Enter the workloads</h4><p>On <strong>Workloads</strong>, add a row for each desktop user type and RDSH farm.
+      Name them anything you like and set the workload class.</p></div>
+    <div class="step"><h4>Choose the host</h4><p>On <strong>Hardware</strong>, pick a processor, memory and GPU memory for up to three
+      candidate hosts.</p></div>
+    <div class="step"><h4>Tune the rules</h4><p>On <strong>Recommendation</strong>, set N+X, overhead, vCPU:pCore limits, dedupe and
+      growth, and watch the host count and design check update live.</p></div>
+    <div class="step"><h4>Download and save</h4><p>Add the customer name and logo on <strong>Report</strong>, click
+      <strong>Download report</strong>, and <strong>Save project</strong> to come back to it later.</p></div>
+  </div>
+  <div class="note"><strong>Tip:</strong> <strong>Home &rarr; Load example</strong> opens a worked sizing (250 persistent desktops on an
+    8-host cluster) so you can see every screen before entering your own data.</div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="eyebrow">Get started</div>
+  <h2>Install and run</h2>
+  <p class="section-lede">No coding and nothing to install by hand. The launcher sets everything up the first time you run it.</p>
+
+  <div class="panel" style="margin:0 0 32px">
+    <div class="eyebrow">Mac &middot; easiest</div>
+    <h4>One command installs and starts VDI Host Sizer</h4>
+    <p>Open <strong>Terminal</strong> (press Cmd+Space, type <em>Terminal</em>), paste this line and press Return.
+      It installs the tool in <code style="background:rgba(255,255,255,.12);color:#fff">~/HostSizer/vdi-app</code>, adds a
+      <strong>VDI Host Sizer</strong> app to your Applications folder (also in Launchpad and Spotlight) and starts it, with no macOS
+      security prompts. Next time, just open that app. Run the same line again any time to update.</p>
+    <div class="cmd"><code id="maccmd">{{MAC_CMD}}</code>
+      <button class="btn primary small" type="button" onclick="copyCmd(this)">Copy</button></div>
+  </div>
+  <h3 style="margin-top:0">Windows</h3>
+  <div class="steps">
+    <div class="step"><h4>Download</h4><p>Click <a href="{{ZIP}}" target="_blank" rel="noopener">Download (ZIP)</a>, or on
+      <a href="{{REPO}}" target="_blank" rel="noopener">GitHub</a> click the green <strong>&lt;&gt; Code</strong> button and choose
+      <strong>Download ZIP</strong>.</p></div>
+    <div class="step"><h4>Unzip</h4><p>Right-click the ZIP and choose <strong>Extract All...</strong> into a normal folder such as
+      <strong>Documents</strong>. Don't run the launcher from inside the ZIP.</p></div>
+    <div class="step"><h4>Double-click the launcher</h4><p><code>Run_on_windows.bat</code>. If Windows shows "Windows protected your PC",
+      click <strong>More info &rarr; Run anyway</strong>.</p></div>
+    <div class="step"><h4>Wait for your browser</h4><p>The first run downloads about 100 MB of libraries (a few minutes).
+      After that it starts in seconds and works offline. Keep the launcher window open while you work.</p></div>
+  </div>
+
+  <div class="table-card"><table>
+    <tr><th></th><th>Windows</th><th>Mac</th></tr>
+    <tr><td>Start the tool</td><td><code>Run_on_windows.bat</code></td><td>Open <strong>VDI Host Sizer</strong> from Applications, Launchpad or Spotlight</td></tr>
+    <tr><td>If Python is missing</td><td>The launcher offers to install Python 3.12 for you. Answer <strong>Y</strong></td>
+        <td>A macOS popup offers the Command Line Tools. Click <strong>Install</strong></td></tr>
+    <tr><td>Internet needed</td><td colspan="2">First run only, to download the libraries from pypi.org. On VPN or a proxy? See the FAQ below.</td></tr>
+    <tr><td>To stop the tool</td><td colspan="2">Close the launcher window (the black command window on Windows, Terminal on Mac).</td></tr>
+  </table></div>
+</div></section>
+
+<section class="alt" id="screens"><div class="wrap">
+  <div class="eyebrow">See it</div>
+  <h2>The tool and the report</h2>
+  <p class="section-lede">The app runs in your browser in the same design language as Host Sizer, Roost and Hatch. The report it
+    produces is what your customer receives. Screenshots show the built-in example, not customer data.</p>
+  <div class="shots">{{SHOTS}}</div>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <div class="eyebrow">Under the hood</div>
+  <h2>How the number is calculated</h2>
+  <p class="section-lede">Every step is shown in the tool and the report under "Sizing method", so the recommendation can be
+    explained line by line. The method follows the AHEAD VDI Sizing Estimator.</p>
+  <div class="cards two">
+    <div class="card navy"><div class="label">Demand</div><h4>What the workloads need</h4>
+      <ul>
+        <li><strong>Desktops:</strong> cores = vCPU &times; users, memory = RAM &times; users, vGPU memory = profile &times; users.</li>
+        <li><strong>RDSH:</strong> servers = users &divide; users per server, rounded up; then the same per server.</li>
+        <li><strong>Disk per desktop:</strong> (thick disk + RAM) + (image &times; clone % + RAM) + profile. RAM is added for the swap file.</li>
+        <li><strong>Storage:</strong> desktop and RDSH disk combined, divided by the dedupe ratio, plus an optional free-space reserve.</li>
+      </ul></div>
+    <div class="card green"><div class="label">Hosts</div><h4>How many, and does it hold up</h4>
+      <ul>
+        <li><strong>Usable host:</strong> cores and memory minus the CPU and RAM overhead you reserve (10% by default).</li>
+        <li><strong>Hosts needed:</strong> the largest of CPU (cores to keep each class within its vCPU:pCore limit), memory, vGPU memory and an optional VMs-per-host cap.</li>
+        <li><strong>Final:</strong> plus X failure-tolerance hosts (N+X), never below the minimum cluster size, split into clusters above the cap.</li>
+        <li><strong>Checks at N-X:</strong> vCPU:pCore, with hyper-threading (&times;1.3), GHz per user, memory and GPU remaining, VMs per host.</li>
+      </ul></div>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">Planning defaults</div>
+    <h4>vCPU:pCore design limits by workload class</h4>
+    <p>These are industry rules of thumb used as starting points, not vendor-mandated limits. They are editable in the tool
+      and will be reviewed by AHEAD; confirm them against the customer's standards or a pilot before committing to a design.</p>
+  </div>
+  <div class="table-card">{{CLASS_TABLE}}</div>
+
+  <h3>What's in the report</h3>
+  <div class="table-card"><table>
+    <tr><th>Section</th><th>What the customer sees</th></tr>
+    <tr><td>Header</td><td>Customer name and logo, project name, concurrent users, VMs, recommended hosts and storage.</td></tr>
+    <tr><td>Workloads</td><td>Every desktop user type and RDSH farm with users, vCPU, memory, vGPU and disk totals.</td></tr>
+    <tr><td>Host sizing</td><td>Each candidate side by side: calculated hosts (N+X), limiting resource, vCPU:pCore, GHz per user, memory left, VMs per host, licensing and pass or fail.</td></tr>
+    <tr><td>Storage</td><td>Thick/PVS, Instant Clone / MCS and profile capacity, before and after dedupe, with the free-space reserve.</td></tr>
+    <tr><td>Assumptions</td><td>The failure tolerance, overhead, dedupe, growth and the vCPU:pCore limits used.</td></tr>
+    <tr><td>Sizing method</td><td>A short, plain-language explanation of how the number was reached.</td></tr>
+  </table></div>
+</div></section>
+
+<section class="alt" id="data"><div class="wrap">
+  <div class="eyebrow">Data handling</div>
+  <h2>Customer data stays local</h2>
+  <p class="section-lede">VDI Host Sizer runs entirely on your own computer.</p>
+  <div class="cards">
+    <div class="card green"><div class="label">Runs locally</div><h4>Nothing is uploaded</h4>
+      <p>The app runs on your laptop and opens in your own browser. Usage statistics are turned off. The only outside request is a
+      version check against GitHub, which reads only the version number and sends no data.</p></div>
+    <div class="card"><div class="label">Saved projects</div><h4>Only your inputs</h4>
+      <p>A project stores the workload rows, host settings and design rules you entered. It holds no customer inventory export.</p></div>
+    <div class="card navy"><div class="label">Where files go</div><h4>Your project library</h4>
+      <p>Projects are saved as <code>.vdiproj</code> files in <code>~/HostSizer/VDIProjects</code> on your computer. Reports go
+        wherever your browser saves downloads.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="eyebrow">Questions</div>
+  <h2>FAQ and troubleshooting</h2>
+  <p class="section-lede">The most common first-run questions. The ReadMe in the download has more.</p>
+
+  <details><summary>What do I need to enter?</summary><div class="answer">For each desktop user type: the concurrent desktops, vCPU,
+    memory, vGPU profile (if any), disk and profile size. For RDSH: concurrent users and users per server, plus the server
+    vCPU and memory. Then the candidate host: processor, memory and GPU memory.</div></details>
+  <details><summary>Why does the tool recommend fewer (or more) hosts than my spreadsheet?</summary><div class="answer">The spreadsheet takes the host
+    count as an input and shows how loaded it would be. VDI Host Sizer calculates the count from CPU, memory and vGPU limits, so
+    the two can differ when someone typed in a more conservative number. Use <strong>Host count override</strong> to test a fixed
+    count, and the reserve settings (CPU and RAM overhead, N+X) to build in extra headroom. The built-in example reproduces the
+    spreadsheet's results exactly.</div></details>
+  <details><summary>Are the vCPU:pCore limits official?</summary><div class="answer">No. They are planning defaults based on common industry
+    ranges and are pending AHEAD review. Change them under <strong>Recommendation &rarr; Design rules</strong> to match the
+    customer's standards or pilot results.</div></details>
+  <details><summary>Is storage performance included?</summary><div class="answer">No. The tool sizes storage capacity only. IOPS, network,
+    vSAN design and application licensing should be confirmed during design.</div></details>
+  <details><summary>Which hypervisors and brokers does it cover?</summary><div class="answer">Version {{VERSION}} targets VMware ESXi hosts for Horizon-style VDI
+    and RDSH. Other platforms are not covered.</div></details>
+  <details><summary>"The libraries could not be downloaded"</summary><div class="answer">The first run needs internet access to
+    <code>pypi.org</code> and <code>files.pythonhosted.org</code>. Connect (and join VPN if required) and run the launcher again.
+    If a proxy blocks those sites, ask your eTech team to allow them.</div></details>
+  <details><summary>Windows: "Could not open requirements file" or "files were not found"</summary><div class="answer">The
+    launcher was opened from inside the ZIP. Right-click the ZIP, choose <strong>Extract All...</strong> (for example to Documents),
+    then double-click <code>Run_on_windows.bat</code> in the extracted folder.</div></details>
+  <details><summary>Mac says "Apple could not verify … is free of malware" / "Not Opened"</summary><div class="answer">macOS blocks scripts
+    downloaded from the internet as a ZIP. Use the <a href="#install">one-command install</a>, which avoids the prompt entirely.
+    The command downloads and builds everything on your Mac, so nothing is flagged.</div></details>
+  <details><summary>How do I update to a new version?</summary><div class="answer">The sidebar (under About) shows an
+    <strong>Update available</strong> card when a newer version is on GitHub. On a Mac, run the one-command install again.
+    On Windows, click <strong>Download update</strong> and replace the old files. Your saved projects are kept because they live in
+    <code>~/HostSizer/VDIProjects</code>, not in the tool folder. The launcher installs any new libraries automatically.</div></details>
+  <details><summary>Can I turn off the update check?</summary><div class="answer">Yes. Set the environment variable
+    <code>VDI_HOSTSIZER_NO_UPDATE_CHECK=1</code> before starting the tool. The check only reads the version number from GitHub.</div></details>
+</div></section>
+
+<section class="alt" id="contact"><div class="wrap">
+  <div class="eyebrow">Ready</div>
+  <h2>Get VDI Host Sizer</h2>
+  <p class="section-lede">Download the latest version, run the launcher, and size your first VDI cluster today.</p>
+  <div class="cta">
+    <a class="btn primary" href="{{ZIP}}" target="_blank" rel="noopener">&#8681;&nbsp; Download (ZIP)</a>
+    <a class="btn primary" href="{{REPO}}" style="background:var(--navy)" target="_blank" rel="noopener">View on GitHub</a>
+  </div>
+  <div class="note">Questions, feedback or ideas? Contact <a href="mailto:adam.marcum@ahead.com">Adam Marcum</a>.
+    Found a problem? Please include a screenshot and the version number shown under About in the sidebar.</div>
+</div></section>
+
+<footer><div class="wrap">
+  <img src="{{AHEAD_WHITE}}" alt="AHEAD">
+  <span>Confidential - Proprietary to AHEAD · VDI Host Sizer v{{VERSION}}</span>
+  <span><a href="{{REPO}}" target="_blank" rel="noopener">github.com/adammarcum/VDI-Sizing-Tool</a></span>
+</div></footer>
+<script>
+function copyCmd(btn) {
+  var text = document.getElementById("maccmd").textContent;
+  function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 2000); }
+  function fallback() {   // clipboard API can be blocked inside embedded pages
+    var r = document.createRange(); r.selectNodeContents(document.getElementById("maccmd"));
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    try { document.execCommand("copy") ? done() : (btn.textContent = "Press Cmd+C"); } catch (e) { btn.textContent = "Press Cmd+C"; }
+  }
+  if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+}
+</script>
